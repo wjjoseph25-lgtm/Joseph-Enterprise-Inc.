@@ -145,9 +145,6 @@ def calculate_chart_route(payload: HoraryChartRequest) -> dict:
     except (ValueError, RuntimeError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-
-app.mount("/mcp", mcp_http_app)
-
 calculate_chart, missing_ephemeris_files
 mcp
 HoraryChartRequest, HoraryChartResponse
