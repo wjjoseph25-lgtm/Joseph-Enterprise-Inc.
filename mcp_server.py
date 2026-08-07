@@ -36,7 +36,7 @@ def _transport_security_settings():
         "localhost:*",
         "127.0.0.1:*",
         "joseph-enterprise-inc.onrender.com",
-        "*.onrender.com",
+        "joseph-enterprise-inc.onrender.com:*",
     ]
 
     if not allowed_hosts and not allowed_origins:
