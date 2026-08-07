@@ -63,8 +63,22 @@ def _valid_mcp_bearer_token(request: Request, configured_key: str) -> bool:
     return scheme.lower() == "bearer" and compare_digest(token, configured_key)
 
 
-mcp_http_app = mcp.streamable_http_app()
+from fastapi import FastAPI
+from fastmcp import FastMCP
 
+mcp = FastMCP("Swiss Ephemeris")
+
+# Keep your existing @mcp.tool functions here.
+
+mcp_app = mcp.http_app(path="/")
+
+app = FastAPI(lifespan=mcp_app.lifespan)
+
+@app.get("/")
+async def health():
+    return {"status": "ok"}
+
+app.mount("/mcp", mcp_app)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
