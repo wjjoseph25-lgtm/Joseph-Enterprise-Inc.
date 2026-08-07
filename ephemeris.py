@@ -37,7 +37,10 @@ def _resolve_ephe_path() -> str:
     return str(path)
 
 
-EPHE_PATH = _resolve_ephe_path()
+EPHE_PATH = os.getenv(
+    "SE_EPHE_PATH",
+    os.path.join(os.path.dirname(__file__), "ephe"),
+)
 swe.set_ephe_path(EPHE_PATH)
 
 SIGNS = (
