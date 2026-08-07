@@ -19,6 +19,30 @@ from ephemeris import calculate_chart, missing_ephemeris_files
 from mcp_server import mcp
 from schemas import HoraryChartRequest, HoraryChartResponse
 
+from fastapi import FastAPI
+from fastmcp import FastMCP
+
+mcp = FastMCP("Swiss Ephemeris")
+
+@mcp.tool
+def test_connection() -> str:
+    """Verify that the MCP server works."""
+    return "Swiss Ephemeris MCP is connected"
+
+mcp_app = mcp.http_app(path="/")
+
+app = FastAPI(lifespan=mcp_app.lifespan)
+
+@app.get("/")
+async def health():
+    return {"status": "ok"}
+
+@app.head("/")
+async def health_head():
+    return None
+
+app.mount("/mcp", mcp_app)
+
 load_dotenv()
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
