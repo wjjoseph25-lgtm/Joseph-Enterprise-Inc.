@@ -107,3 +107,5 @@ def calculate_chart(
         longitude=longitude,
         house_system="R",
     )
+
+calculate_chart
