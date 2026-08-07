@@ -54,6 +54,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Mount the MCP HTTP application so /mcp endpoints are served by the MCP server.
+# We keep the middleware rewrite for /mcp -> /mcp/ so clients using the exact
+# public URL don't receive a 307 redirect.
+app.mount("/mcp", mcp_http_app)
+
 # Baseline per-process limiter. Use a gateway or shared Redis limiter for multi-worker production.
 _rate_limit = int(os.getenv("RATE_LIMIT_PER_MINUTE", "60"))
 _rate_windows: dict[str, deque[float]] = defaultdict(deque)
