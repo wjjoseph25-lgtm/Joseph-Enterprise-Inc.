@@ -6,6 +6,7 @@ import logging
 import os
 import time
 from collections import defaultdict, deque
+from contextlib import asynccontextmanager
 from secrets import compare_digest
 from threading import Lock
 from typing import Awaitable, Callable
@@ -64,6 +65,12 @@ def _valid_mcp_bearer_token(
 mcp_http_app = mcp.streamable_http_app()
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    async with mcp.session_manager.run():
+        yield
+
+
 # ---------------------------------------------------------------------------
 # Main FastAPI application
 # ---------------------------------------------------------------------------
@@ -71,7 +78,7 @@ mcp_http_app = mcp.streamable_http_app()
 app = FastAPI(
     title="Orora Swiss Ephemeris Engine",
     version="2.0.0",
-    lifespan=mcp_http_app.lifespan,
+    lifespan=lifespan,
 )
 
 
