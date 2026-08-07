@@ -147,3 +147,7 @@ def calculate_chart_route(payload: HoraryChartRequest) -> dict:
 
 
 app.mount("/mcp", mcp_http_app)
+
+calculate_chart, missing_ephemeris_files
+mcp
+HoraryChartRequest, HoraryChartResponse
