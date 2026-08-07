@@ -9,7 +9,7 @@ from typing import Any
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 
-from app.ephemeris import calculate_chart as calculate_chart_impl
+from ephemeris import calculate_chart as calculate_chart_impl
 
 load_dotenv()
 
