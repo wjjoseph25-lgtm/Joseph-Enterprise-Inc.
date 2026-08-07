@@ -15,9 +15,9 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 
-from app.ephemeris import calculate_chart, missing_ephemeris_files
-from app.mcp_server import mcp
-from app.schemas import HoraryChartRequest, HoraryChartResponse
+from ephemeris import calculate_chart, missing_ephemeris_files
+from mcp_server import mcp
+from schemas import HoraryChartRequest, HoraryChartResponse
 
 load_dotenv()
 logging.basicConfig(
