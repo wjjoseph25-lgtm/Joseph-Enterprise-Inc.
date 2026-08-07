@@ -39,9 +39,6 @@ def _transport_security_settings():
         "joseph-enterprise-inc.onrender.com:*",
     ]
 
-    if not allowed_hosts and not allowed_origins:
-        return None
-
     try:
         from mcp.server.transport_security import (
             TransportSecuritySettings,
