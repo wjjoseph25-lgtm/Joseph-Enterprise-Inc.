@@ -223,12 +223,12 @@ def calculate_chart_route(payload: HoraryChartRequest) -> dict:
 # Mount MCP last
 # ---------------------------------------------------------------------------
 
-app.mount("/mcp", mcp_http_app)async def health():
-    return {"status": "ok"}
+app.mount("/mcp", mcp_http_app)
 
-@app.head("/")
-async def health_head():
-    return None
+
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
 
 app.mount("/mcp", mcp_app)
 
