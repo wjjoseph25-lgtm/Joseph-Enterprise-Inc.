@@ -61,7 +61,7 @@ def _valid_mcp_bearer_token(
 
 # mcp is imported from mcp_server.py.
 # The MCP application is mounted below at /mcp.
-mcp_http_app = mcp.http_app(path="/")
+mcp_http_app = mcp.streamable_http_app()
 
 
 # ---------------------------------------------------------------------------
