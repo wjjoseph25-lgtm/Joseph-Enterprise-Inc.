@@ -32,6 +32,12 @@ def _transport_security_settings():
 
     allowed_hosts = _csv_env("MCP_ALLOWED_HOSTS")
     allowed_origins = _csv_env("MCP_ALLOWED_ORIGINS")
+    default_allowed_hosts = [
+        "localhost:*",
+        "127.0.0.1:*",
+        "joseph-enterprise-inc.onrender.com",
+        "*.onrender.com",
+    ]
 
     if not allowed_hosts and not allowed_origins:
         return None
@@ -47,11 +53,7 @@ def _transport_security_settings():
         ) from exc
 
     return TransportSecuritySettings(
-        allowed_hosts=allowed_hosts or [
-            "localhost:*",
-            "127.0.0.1:*",
-            "joseph-enterprise-inc.onrender.com",
-        ],
+        allowed_hosts=list(dict.fromkeys([*allowed_hosts, *default_allowed_hosts])),
         allowed_origins=allowed_origins,
     )
 
