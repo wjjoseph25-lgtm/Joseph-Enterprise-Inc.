@@ -12,7 +12,7 @@ import swisseph as swe
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
-from app.schemas import (
+from schemas import (
     ChartAngles,
     ChartMetadata,
     HoraryChartRequest,
