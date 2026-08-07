@@ -53,6 +53,7 @@ def _transport_security_settings():
         ) from exc
 
     return TransportSecuritySettings(
+        enable_dns_rebinding_protection=False,
         allowed_hosts=list(dict.fromkeys([*allowed_hosts, *default_allowed_hosts])),
         allowed_origins=allowed_origins,
     )
