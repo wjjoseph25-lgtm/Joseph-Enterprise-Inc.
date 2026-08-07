@@ -1,0 +1,7 @@
+@app.get("/")
+async def health():
+    return {"status": "ok"}
+
+@app.head("/")
+async def health_head():
+    return Response(status_code=200)
