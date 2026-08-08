@@ -32,9 +32,12 @@ def _transport_security_settings():
 
     allowed_hosts = _csv_env("MCP_ALLOWED_HOSTS")
     allowed_origins = _csv_env("MCP_ALLOWED_ORIGINS")
-
-    if not allowed_hosts and not allowed_origins:
-        return None
+    default_allowed_hosts = [
+        "localhost:*",
+        "127.0.0.1:*",
+        "joseph-enterprise-inc.onrender.com",
+        "joseph-enterprise-inc.onrender.com:*",
+    ]
 
     try:
         from mcp.server.transport_security import (
@@ -47,11 +50,8 @@ def _transport_security_settings():
         ) from exc
 
     return TransportSecuritySettings(
-        allowed_hosts=allowed_hosts or [
-            "localhost:*",
-            "127.0.0.1:*",
-            "joseph-enterprise-inc.onrender.com",
-        ],
+        enable_dns_rebinding_protection=False,
+        allowed_hosts=list(dict.fromkeys([*allowed_hosts, *default_allowed_hosts])),
         allowed_origins=allowed_origins,
     )
 
