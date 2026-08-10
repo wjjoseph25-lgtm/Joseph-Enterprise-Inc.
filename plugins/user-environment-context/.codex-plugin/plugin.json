@@ -1,0 +1,23 @@
+{
+  "name": "user-environment-context",
+  "version": "0.1.0+codex.20260810182247",
+  "description": "Expose local timestamp and user-provided GPS context to Codex.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "User Environment Context",
+    "shortDescription": "Expose timestamp and location context.",
+    "longDescription": "Adds an MCP tool named get_user_environment_context that returns the local timestamp, timezone, and GPS coordinates when the host supplies them through environment variables.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Get my environment context."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
