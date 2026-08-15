@@ -7,13 +7,15 @@ import os
 import time
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
+from pathlib import Path
 from secrets import compare_digest
 from threading import Lock
 from typing import Awaitable, Callable
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Response, status
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from ephemeris import calculate_chart, missing_ephemeris_files
 from mcp_server import mcp
@@ -79,6 +81,9 @@ app = FastAPI(
     version="2.0.0",
     lifespan=lifespan,
 )
+
+_web_dir = Path(__file__).resolve().parent / "web"
+app.mount("/studio/assets", StaticFiles(directory=_web_dir), name="studio-assets")
 
 
 # ---------------------------------------------------------------------------
@@ -187,6 +192,13 @@ async def root_health_head() -> Response:
 @app.get("/health")
 def health_check() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/studio", include_in_schema=False)
+def clipper_studio() -> FileResponse:
+    """Serve the Clipcraft upload and clip-review workspace."""
+
+    return FileResponse(_web_dir / "index.html")
 
 
 @app.get("/ready", response_model=None)
