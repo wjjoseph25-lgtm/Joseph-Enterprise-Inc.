@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Turn long videos into polished, captioned short clips.">
+  <title>Clipcraft — Find the moments worth sharing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/studio/assets/styles.css">
+</head>
+<body>
+  <header class="nav shell">
+    <a class="brand" href="/studio" aria-label="Clipcraft home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>clipcraft</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#workflow">How it works</a>
+      <a href="#features">Features</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="text-button" type="button">Sign in</button>
+      <button class="button button-dark" type="button">Get started</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="eyebrow"><span></span> AI-powered video clipping</div>
+      <h1>Find the moments<br><em>worth sharing.</em></h1>
+      <p class="hero-copy">Turn long conversations into scroll-stopping short clips—framed, captioned, and ready to post.</p>
+
+      <div class="upload-card" id="uploadCard">
+        <input id="videoInput" type="file" accept="video/mp4,video/quicktime,video/webm" hidden>
+        <div class="upload-idle" id="uploadIdle">
+          <div class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+          </div>
+          <h2>Drop your video here</h2>
+          <p>or choose a file from your computer</p>
+          <button class="button button-coral" id="chooseButton" type="button">Choose video <span>→</span></button>
+          <small>MP4, MOV or WebM · Up to 60 minutes</small>
+        </div>
+        <div class="upload-processing" id="uploadProcessing" hidden>
+          <div class="processing-top">
+            <span class="video-file-icon">▶</span>
+            <div><strong id="fileName">your-video.mp4</strong><small id="fileSize">Preparing your video</small></div>
+            <button id="cancelButton" type="button" aria-label="Cancel upload">×</button>
+          </div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <div class="processing-status"><span id="statusText">Uploading…</span><span id="progressText">0%</span></div>
+        </div>
+      </div>
+      <p class="privacy-note"><svg viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2m-11 0h12v10H6z"/></svg> Your uploads stay private and are automatically deleted.</p>
+    </section>
+
+    <section class="workflow" id="workflow">
+      <div class="shell">
+        <div class="section-heading"><span>From long-form to short-form</span><h2>Three steps. Zero busywork.</h2></div>
+        <div class="steps">
+          <article><b>01</b><div class="step-icon waveform"><i></i><i></i><i></i><i></i><i></i></div><h3>We listen</h3><p>Precise transcription finds every sentence, pause, and topic shift.</p></article>
+          <article><b>02</b><div class="step-icon sparkle">✦</div><h3>AI finds the gold</h3><p>Your strongest hooks and complete ideas are ranked automatically.</p></article>
+          <article><b>03</b><div class="step-icon frame"><span>CC</span></div><h3>You make it yours</h3><p>Fine-tune the cut, style captions, and export in any format.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="features shell" id="features">
+      <div><span class="feature-dot coral"></span><strong>Smart 9:16 framing</strong><small>Keeps the speaker in view</small></div>
+      <div><span class="feature-dot mint"></span><strong>Word-perfect captions</strong><small>Timed to every syllable</small></div>
+      <div><span class="feature-dot gold"></span><strong>Five clips, one upload</strong><small>Ready in just a few minutes</small></div>
+    </section>
+  </main>
+
+  <footer class="shell"><a class="brand" href="/studio"><span class="brand-mark"><i></i><i></i><i></i></span><span>clipcraft</span></a><p>Make every minute count.</p><span>© 2026 Clipcraft</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/studio/assets/app.js"></script>
+</body>
+</html>
